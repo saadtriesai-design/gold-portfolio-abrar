@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Gold · Riyadh</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      background: #edecea;
+      color: #111827;
+      min-height: 100vh;
+      padding-bottom: 48px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, #005050 0%, #007878 45%, #00bcd4 100%);
+      color: #fff;
+      padding: 20px 18px 18px;
+    }
+    .hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+    .badge-est {
+      background: #ef4444;
+      color: #fff;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 3px 8px 3px 6px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .badge-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #fff;
+      display: inline-block;
+      animation: blink 1.8s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.35} }
+    .hero-sublabel {
+      font-size: 0.67rem;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      opacity: 0.65;
+      text-align: center;
+      margin-bottom: 2px;
+    }
+    .hero-price {
+      font-size: 5rem;
+      font-weight: 800;
+      text-align: center;
+      line-height: 1;
+      letter-spacing: -3px;
+      margin-bottom: 4px;
+    }
+    .hero-desc {
+      text-align: center;
+      font-size: 0.73rem;
+      opacity: 0.72;
+      margin-bottom: 14px;
+    }
+    .hero-usd-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .usd-pill {
+      background: rgba(255,255,255,0.18);
+      border: 1.5px solid rgba(255,255,255,0.38);
+      border-radius: 50px;
+      padding: 7px 20px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      letter-spacing: 0.2px;
+    }
+    .usd-pill:active { background: rgba(255,255,255,0.3); }
+    .hero-refresh {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .refresh-label {
+      font-size: 0.62rem;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      opacity: 0.6;
+      white-space: nowrap;
+    }
+    .bar-bg {
+      flex: 1;
+      height: 4px;
+      background: rgba(255,255,255,0.22);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: rgba(255,255,255,0.82);
+      border-radius: 10px;
+      transition: width 1s linear;
+    }
+    .countdown-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      opacity: 0.82;
+      min-width: 18px;
+      text-align: right;
+    }
+
+    /* ── MAIN ── */
+    main { max-width: 480px; margin: 0 auto; padding: 12px 13px; }
+
+    /* ── KARAT GRID ── */
+    .karat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 7px;
+      margin-bottom: 9px;
+    }
+    .karat-card {
+      background: #fff;
+      border-radius: 13px;
+      padding: 11px 6px 10px;
+      text-align: center;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+      border: 2px solid transparent;
+    }
+    .karat-card.active { border-color: #00bcd4; }
+    .kc-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #9ca3af;
+      letter-spacing: 0.4px;
+      margin-bottom: 5px;
+    }
+    .karat-card.active .kc-label { color: #00bcd4; }
+    .kc-price {
+      font-size: 1.18rem;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 3px;
+    }
+    .karat-card.active .kc-price { color: #00bcd4; }
+    .kc-purity {
+      font-size: 0.6rem;
+      color: #d1d5db;
+      font-weight: 500;
+    }
+
+    /* ── STATS ROW ── */
+    .stats-row {
+      background: #fff;
+      border-radius: 13px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      margin-bottom: 9px;
+      overflow: hidden;
+    }
+    .stat-cell {
+      padding: 13px 6px;
+      text-align: center;
+      position: relative;
+    }
+    .stat-cell + .stat-cell::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 22%; bottom: 22%;
+      width: 1px;
+      background: #f3f4f6;
+    }
+    .stat-lbl {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 5px;
+    }
+    .stat-val {
+      font-size: 1.28rem;
+      font-weight: 800;
+      color: #111827;
+    }
+    .stat-val.up   { color: #16a34a; }
+    .stat-val.down { color: #ef4444; }
+
+    /* ── SUMMARY CARDS ── */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      margin-bottom: 9px;
+    }
+    .sum-card {
+      background: #fff;
+      border-radius: 13px;
+      padding: 13px 13px 12px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    .sum-title {
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .sum-card.spent  .sum-title  { color: #f59e0b; }
+    .sum-card.return .sum-title  { color: #16a34a; }
+    .sum-amount {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .sum-card.spent  .sum-amount { color: #f59e0b; }
+    .sum-card.return .sum-amount { color: #16a34a; }
+    .sum-sub {
+      font-size: 0.66rem;
+      color: #9ca3af;
+    }
+    .sum-card.return .sum-sub { color: #16a34a; }
+
+    /* ── ZAKAT ── */
+    .zakat-card {
+      background: linear-gradient(135deg, #005050 0%, #007878 55%, #00bcd4 100%);
+      border-radius: 14px;
+      padding: 15px 16px 13px;
+      margin-bottom: 9px;
+      box-shadow: 0 4px 16px rgba(0,188,212,0.22);
+      color: #fff;
+    }
+    .zakat-hdr {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 12px;
+    }
+    .zakat-icon { font-size: 1rem; }
+    .zakat-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+    .zakat-dates-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .zakat-date-block {
+      background: rgba(255,255,255,0.10);
+      border-radius: 10px;
+      padding: 9px 10px;
+    }
+    .zakat-date-block-lbl {
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.9px;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 7px;
+    }
+    .zakat-date-pair {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .zakat-date-item {
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+    }
+    .zakat-date-sublbl {
+      font-size: 0.52rem;
+      font-weight: 600;
+      opacity: 0.55;
+      white-space: nowrap;
+      min-width: 42px;
+    }
+    .zakat-date-val {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+    }
+    .zakat-countdown {
+      border-radius: 12px;
+      padding: 12px 10px 10px;
+      text-align: center;
+      margin-bottom: 12px;
+      transition: background 0.5s;
+    }
+    .zakat-countdown.green { background: rgba(22,163,74,0.28); }
+    .zakat-countdown.amber { background: rgba(245,158,11,0.28); }
+    .zakat-countdown.red   { background: rgba(239,68,68,0.28); }
+    .zakat-countdown-num {
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 3px;
+      transition: color 0.5s;
+    }
+    .zakat-countdown.green .zakat-countdown-num { color: #6ee7b7; }
+    .zakat-countdown.amber .zakat-countdown-num { color: #fcd34d; }
+    .zakat-countdown.red   .zakat-countdown-num { color: #fca5a5; }
+    .zakat-countdown-lbl {
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+    .zakat-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .zakat-cell { flex: 1; text-align: center; }
+    .zakat-lbl {
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      opacity: 0.65;
+      margin-bottom: 4px;
+    }
+    .zakat-val {
+      font-size: 1.22rem;
+      font-weight: 800;
+      color: #fff;
+    }
+    .zakat-amt {
+      color: #a7f3d0;
+    }
+    .zakat-sep {
+      font-size: 0.78rem;
+      font-weight: 700;
+      opacity: 0.55;
+      white-space: nowrap;
+    }
+    .zakat-note {
+      font-size: 0.6rem;
+      opacity: 0.5;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── LOTS ── */
+    .lots-hdr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 9px;
+    }
+    .lots-title {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #9ca3af;
+    }
+    .btn-add {
+      background: #fff;
+      border: 1.5px solid #00bcd4;
+      color: #00bcd4;
+      border-radius: 20px;
+      padding: 5px 13px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-add:active { background: #e0f7fa; }
+    .lot-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 13px; }
+    .lot-item {
+      background: #fff;
+      border-radius: 13px;
+      padding: 13px 13px 12px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    .lot-hdr {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .lot-name { font-size: 0.88rem; font-weight: 700; color: #111827; }
+    .lot-meta { font-size: 0.68rem; color: #9ca3af; margin-top: 2px; }
+    .lot-btns { display: flex; gap: 6px; }
+    .btn-sm {
+      background: none;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 4px 9px;
+      font-size: 0.68rem;
+      cursor: pointer;
+      color: #6b7280;
+      font-weight: 600;
+    }
+    .btn-sm.del { color: #ef4444; border-color: #fca5a5; }
+    .lot-nums {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+    }
+    .ln { text-align: center; }
+    .ln-lbl { font-size: 0.59rem; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 2px; }
+    .ln-val { font-size: 0.78rem; font-weight: 700; color: #111827; }
+    .pos { color: #16a34a; }
+    .neg { color: #ef4444; }
+
+    /* ── AI ADVICE ── */
+    .btn-ai {
+      width: 100%;
+      background: linear-gradient(135deg, #005050 0%, #007878 50%, #00bcd4 100%);
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      padding: 15px;
+      font-size: 0.93rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 16px rgba(0,188,212,0.28);
+      margin-bottom: 11px;
+      letter-spacing: 0.2px;
+    }
+    .btn-ai:disabled { opacity: 0.6; cursor: not-allowed; }
+    .btn-ai .spin {
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,0.32);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: rot 0.75s linear infinite;
+      display: none;
+    }
+    .btn-ai.loading .spin     { display: block; }
+    .btn-ai.loading .ai-icon  { display: none; }
+    @keyframes rot { to { transform: rotate(360deg); } }
+
+    .advice-card {
+      display: none;
+      background: #fff;
+      border-radius: 14px;
+      padding: 15px;
+      margin-bottom: 11px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+      border-top: 3px solid #00bcd4;
+    }
+    .advice-card.show { display: block; }
+    .advice-hdr {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 10px;
+    }
+    .advice-hdr-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #005050;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    .advice-body { font-size: 0.84rem; line-height: 1.68; color: #374151; white-space: pre-wrap; }
+    .advice-ts { font-size: 0.63rem; color: #9ca3af; margin-top: 10px; text-align: right; }
+
+    /* ── MODALS ── */
+    .overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.42);
+      backdrop-filter: blur(5px);
+      z-index: 200;
+      display: flex; align-items: flex-end;
+      padding: 16px;
+    }
+    .overlay.hidden { display: none; }
+    .modal {
+      background: #fff;
+      border-radius: 22px 22px 16px 16px;
+      padding: 22px 18px 28px;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .modal h2 { font-size: 1rem; font-weight: 700; color: #111827; margin-bottom: 5px; }
+    .modal p  { font-size: 0.77rem; color: #6b7280; margin-bottom: 14px; line-height: 1.5; }
+    .modal label { font-size: 0.73rem; font-weight: 600; color: #374151; margin-bottom: 4px; display: block; }
+    .modal .field { margin-bottom: 10px; }
+    .modal input {
+      width: 100%;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 11px;
+      padding: 11px 12px;
+      font-size: 0.88rem;
+      color: #111827;
+      outline: none;
+    }
+    .modal input:focus { border-color: #00bcd4; }
+    .modal-btns { display: flex; gap: 8px; margin-top: 6px; }
+    .btn-cancel {
+      flex: 1; background: #f3f4f6; border: none; border-radius: 11px;
+      padding: 12px; font-size: 0.85rem; font-weight: 600; cursor: pointer; color: #6b7280;
+    }
+    .btn-ok {
+      flex: 2; background: linear-gradient(135deg, #005050, #00bcd4);
+      border: none; border-radius: 11px;
+      padding: 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; color: #fff;
+    }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed; bottom: 24px; left: 50%;
+      transform: translateX(-50%);
+      background: #1f2937; color: #fff;
+      border-radius: 22px; padding: 10px 20px;
+      font-size: 0.82rem; font-weight: 600;
+      z-index: 300; opacity: 0;
+      transition: opacity 0.3s; pointer-events: none; white-space: nowrap;
+    }
+    .toast.show { opacity: 1; }
+  </style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-title">🔥 Gold · Riyadh · 24K</div>
+    <div class="badge-est"><span class="badge-dot"></span> Estimated</div>
+  </div>
+  <div class="hero-sublabel">Price per gram · SAR</div>
+  <div class="hero-price" id="heroPrice">—</div>
+  <div class="hero-desc">Saudi Riyal / gram · 24 Karat</div>
+  <div class="hero-usd-wrap">
+    <button class="usd-pill" id="usdPill" onclick="fetchGoldPrice()">—</button>
+  </div>
+  <div class="hero-refresh">
+    <span class="refresh-label">Next Refresh</span>
+    <div class="bar-bg"><div class="bar-fill" id="barFill" style="width:100%"></div></div>
+    <span class="countdown-num" id="cntNum">60</span>
+  </div>
+</div>
+
+<main>
+
+  <!-- ── KARAT GRID ── -->
+  <div class="karat-grid">
+    <div class="karat-card active">
+      <div class="kc-label">24K</div>
+      <div class="kc-price" id="k24">—</div>
+      <div class="kc-purity">99.9%</div>
+    </div>
+    <div class="karat-card">
+      <div class="kc-label">22K</div>
+      <div class="kc-price" id="k22">—</div>
+      <div class="kc-purity">91.6%</div>
+    </div>
+    <div class="karat-card">
+      <div class="kc-label">21K</div>
+      <div class="kc-price" id="k21">—</div>
+      <div class="kc-purity">87.5%</div>
+    </div>
+    <div class="karat-card">
+      <div class="kc-label">18K</div>
+      <div class="kc-price" id="k18">—</div>
+      <div class="kc-purity">75.0%</div>
+    </div>
+  </div>
+
+  <!-- ── STATS ROW ── -->
+  <div class="stats-row">
+    <div class="stat-cell">
+      <div class="stat-lbl">Today High</div>
+      <div class="stat-val up"   id="statHigh">—</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-lbl">Today Low</div>
+      <div class="stat-val down" id="statLow">—</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-lbl">Yesterday</div>
+      <div class="stat-val"      id="statYest">—</div>
+    </div>
+  </div>
+
+  <!-- ── SUMMARY CARDS ── -->
+  <div class="summary-grid">
+    <div class="sum-card spent">
+      <div class="sum-title">🪙 Total Spent</div>
+      <div class="sum-amount" id="sumSpent">—</div>
+      <div class="sum-sub"    id="sumSpentSub">—</div>
+    </div>
+    <div class="sum-card return">
+      <div class="sum-title">📈 Total Return</div>
+      <div class="sum-amount" id="sumReturn">—</div>
+      <div class="sum-sub"    id="sumReturnSub">—</div>
+    </div>
+  </div>
+
+  <!-- ── ZAKAT ── -->
+  <div class="zakat-card" id="zakatCard">
+    <div class="zakat-hdr">
+      <span class="zakat-icon">☽</span>
+      <span class="zakat-title">Zakat on Gold</span>
+    </div>
+
+    <!-- Date blocks -->
+    <div class="zakat-dates-row">
+      <div class="zakat-date-block">
+        <div class="zakat-date-block-lbl">Last Zakat Payment</div>
+        <div class="zakat-date-pair">
+          <div class="zakat-date-item">
+            <div class="zakat-date-sublbl">Greg</div>
+            <div class="zakat-date-val">28 Dec 2025</div>
+          </div>
+          <div class="zakat-date-item">
+            <div class="zakat-date-sublbl">🌙 Hijri</div>
+            <div class="zakat-date-val">8 Rajab 1447</div>
+          </div>
+        </div>
+      </div>
+      <div class="zakat-date-block">
+        <div class="zakat-date-block-lbl">Next Zakat Due</div>
+        <div class="zakat-date-pair">
+          <div class="zakat-date-item">
+            <div class="zakat-date-sublbl">Greg</div>
+            <div class="zakat-date-val">28 Dec 2026</div>
+          </div>
+          <div class="zakat-date-item">
+            <div class="zakat-date-sublbl">🌙 Hijri</div>
+            <div class="zakat-date-val">8 Rajab 1448</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Countdown -->
+    <div class="zakat-countdown green" id="zakatCountdown">
+      <div class="zakat-countdown-num" id="zakatDaysNum">—</div>
+      <div class="zakat-countdown-lbl" id="zakatCountdownLbl">days until Zakat due</div>
+    </div>
+
+    <!-- Amount row -->
+    <div class="zakat-row">
+      <div class="zakat-cell">
+        <div class="zakat-lbl">Total Value</div>
+        <div class="zakat-val" id="zakatTotal">—</div>
+      </div>
+      <div class="zakat-sep">×&nbsp;2.5%</div>
+      <div class="zakat-cell">
+        <div class="zakat-lbl">Zakat Amount</div>
+        <div class="zakat-val zakat-amt" id="zakatDue">—</div>
+      </div>
+    </div>
+    <div class="zakat-note">Calculated on current market value · SAR</div>
+  </div>
+
+  <!-- ── LOTS ── -->
+  <div class="lots-hdr">
+    <div class="lots-title">Your Gold Lots</div>
+    <button class="btn-add" onclick="openAddLot()">+ Edit / Add Lot</button>
+  </div>
+  <div class="lot-list" id="lotList"></div>
+
+  <!-- ── AI ADVICE CARD ── -->
+  <div class="advice-card" id="adviceCard">
+    <div class="advice-hdr">
+      <span>✦</span>
+      <span class="advice-hdr-title">AI Market Advice</span>
+    </div>
+    <div class="advice-body" id="adviceBody"></div>
+    <div class="advice-ts"   id="adviceTs"></div>
+  </div>
+
+  <!-- ── AI BUTTON ── -->
+  <button class="btn-ai" id="aiBtn" onclick="getAIAdvice()">
+    <span class="ai-icon">✦</span>
+    <span class="spin"></span>
+    Get AI Advice
+  </button>
+
+</main>
+
+<!-- ── API KEY MODAL ── -->
+<div class="overlay hidden" id="apiKeyModal">
+  <div class="modal">
+    <h2>🔑 Anthropic API Key</h2>
+    <p>Stored only in this browser. Used to get AI investment advice from Claude.</p>
+    <input type="password" id="apiKeyInput" placeholder="sk-ant-..." autocomplete="off" />
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeApiKeyModal()">Cancel</button>
+      <button class="btn-ok"     onclick="saveApiKey()">Save & Continue</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── LOT MODAL ── -->
+<div class="overlay hidden" id="lotModal">
+  <div class="modal">
+    <h2 id="lotModalTitle">Add Lot</h2>
+    <div class="field">
+      <label>Name / Label</label>
+      <input type="text"   id="lotName"         placeholder="e.g. Long-term hold" />
+    </div>
+    <div class="field">
+      <label>Weight (grams)</label>
+      <input type="number" id="lotWeight"        placeholder="e.g. 100" min="0.01" step="0.01" />
+    </div>
+    <div class="field">
+      <label>Buy Price (SAR / gram)</label>
+      <input type="number" id="lotBuyPrice"      placeholder="e.g. 407" min="0.01" step="0.01" />
+    </div>
+    <div class="field">
+      <label>Purchase Date</label>
+      <input type="date"   id="lotPurchaseDate" />
+    </div>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeLotModal()">Cancel</button>
+      <button class="btn-ok"     onclick="saveLot()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── PASSWORD MODAL ── -->
+<div class="overlay hidden" id="pwModal">
+  <div class="modal">
+    <h2>🔒 App Password</h2>
+    <p>Enter the password set in your Netlify environment variables (<code>LOTS_PASSWORD</code>). Stored only in this browser.</p>
+    <input type="password" id="pwInput" placeholder="Enter password…" autocomplete="current-password" />
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closePwModal()">Cancel</button>
+      <button class="btn-ok"     onclick="savePw()">Save & Retry</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── CONFIG ──
+const REFRESH  = 60;
+const SAR_RATE = 3.75 / 31.1035; // USD/troy-oz → SAR/gram
+
+// ── STATE ──
+let price24k = 0, highSAR = 0, lowSAR = 0, usdOz = 0;
+let cntSec = REFRESH, cntTimer = null, editId = null;
+let lots = []; // single source of truth, synced to Netlify Blobs
+
+const DEFAULT_LOTS = [
+  { id: 'default-1', name: 'Long-term hold', weight: 100, buyPrice: 300 },
+  { id: 'default-2', name: 'Mid-term lot',   weight: 20,  buyPrice: 300 },
+  { id: 'default-3', name: 'Short-term lot', weight: 5,   buyPrice: 300 },
+];
+
+// ── HELPERS ──
+function uid() { return Math.random().toString(36).slice(2); }
+function fmt(n, d=0) { return Number(n).toLocaleString('en-SA',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+function nowStr() { return new Date().toLocaleTimeString('en-SA',{hour:'2-digit',minute:'2-digit'}); }
+function showToast(msg, ms=2600) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), ms);
+}
+
+// ── YESTERDAY TRACKING ──
+// Store price history keyed by date (YYYY-MM-DD)
+function trackYesterday(dateStr, closePrice) {
+  let hist = {};
+  try { hist = JSON.parse(localStorage.getItem('gph') || '{}'); } catch(_){}
+  const dates = Object.keys(hist).filter(d => d !== dateStr).sort();
+  const yesterdayClose = dates.length ? hist[dates[dates.length - 1]] : null;
+  hist[dateStr] = closePrice;
+  // Keep only last 7 days
+  const all = Object.keys(hist).sort();
+  if (all.length > 7) delete hist[all[0]];
+  localStorage.setItem('gph', JSON.stringify(hist));
+  return yesterdayClose;
+}
+
+// ── PASSWORD (auth for POST) ──────────────────
+function getPw()       { return localStorage.getItem('lots_pw') || ''; }
+function openPwModal() {
+  document.getElementById('pwInput').value = getPw();
+  document.getElementById('pwModal').classList.remove('hidden');
+}
+function closePwModal() { document.getElementById('pwModal').classList.add('hidden'); }
+function savePw() {
+  const pw = document.getElementById('pwInput').value.trim();
+  localStorage.setItem('lots_pw', pw);
+  closePwModal();
+  persistLots(); // retry the save that triggered the 401
+}
+
+// ── LOTS SYNC ─────────────────────────────────
+// On startup: fetch from Netlify Blobs API, fall back to localStorage, then defaults.
+// On every change: write to API (cloud) + localStorage (instant offline cache).
+// Widget reads from the same API, so it always stays in sync.
+
+async function initLots() {
+  try {
+    const r = await fetch('/.netlify/functions/lots');
+    if (!r.ok) throw new Error('API error');
+    lots = await r.json();
+    localStorage.setItem('gold_lots', JSON.stringify(lots));
+  } catch (_) {
+    try {
+      const cached = localStorage.getItem('gold_lots');
+      lots = cached ? JSON.parse(cached) : DEFAULT_LOTS.map(l => ({ ...l }));
+    } catch (_) {
+      lots = DEFAULT_LOTS.map(l => ({ ...l }));
+    }
+  }
+  renderLots();
+}
+
+async function persistLots() {
+  localStorage.setItem('gold_lots', JSON.stringify(lots));
+  try {
+    const r = await fetch('/.netlify/functions/lots', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Lots-Password': getPw() },
+      body: JSON.stringify(lots),
+    });
+    if (r.status === 401) { openPwModal(); return; }
+    if (!r.ok) throw new Error('API error');
+  } catch (_) {
+    showToast('⚠️ Saved locally — cloud sync failed');
+  }
+}
+
+// ── FETCH PRICE ──
+async function fetchGoldPrice() {
+  try {
+    const r = await fetch('/api/gold', { cache: 'no-store' });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const text = await r.text();
+    // CSV: Symbol,Date,Time,Open,High,Low,Close,Volume
+    const cols = text.trim().split('\n')[1].split(',');
+    const close = parseFloat(cols[6]);
+    const high  = parseFloat(cols[4]);
+    const low   = parseFloat(cols[5]);
+    const date  = cols[1];
+    if (!close || close <= 0) throw new Error('bad price');
+
+    usdOz   = close;
+    price24k = close * SAR_RATE;
+    highSAR  = high  * SAR_RATE;
+    lowSAR   = low   * SAR_RATE;
+
+    const yest = trackYesterday(date, price24k);
+    updateHeroUI(yest);
+    renderLots();
+    resetCountdown();
+  } catch(e) {
+    showToast('⚠️ Price fetch failed — check connection');
+  }
+}
+
+function updateHeroUI(yesterdayClose) {
+  const p = Math.round(price24k);
+  document.getElementById('heroPrice').textContent = p || '—';
+  document.getElementById('usdPill').textContent   = usdOz ? '$' + fmt(usdOz) + ' USD/oz' : '—';
+  document.getElementById('k24').textContent = p || '—';
+  document.getElementById('k22').textContent = p ? Math.round(price24k * 22/24) : '—';
+  document.getElementById('k21').textContent = p ? Math.round(price24k * 21/24) : '—';
+  document.getElementById('k18').textContent = p ? Math.round(price24k * 18/24) : '—';
+  document.getElementById('statHigh').textContent = highSAR ? Math.round(highSAR) : '—';
+  document.getElementById('statLow').textContent  = lowSAR  ? Math.round(lowSAR)  : '—';
+  document.getElementById('statYest').textContent = yesterdayClose ? Math.round(yesterdayClose) : '—';
+}
+
+// ── COUNTDOWN ──
+function resetCountdown() {
+  clearInterval(cntTimer);
+  cntSec = REFRESH; tick();
+  cntTimer = setInterval(() => { cntSec--; cntSec <= 0 ? fetchGoldPrice() : tick(); }, 1000);
+}
+function tick() {
+  document.getElementById('barFill').style.width = (cntSec / REFRESH * 100) + '%';
+  document.getElementById('cntNum').textContent  = cntSec;
+}
+
+// ── RENDER LOTS ──
+function renderLots() {
+  const list = document.getElementById('lotList');
+  list.innerHTML = '';
+  let tSpent = 0, tReturn = 0, tWeight = 0;
+
+  lots.forEach(lot => {
+    const spent   = lot.weight * lot.buyPrice;
+    const current = price24k > 0 ? lot.weight * price24k : 0;
+    const profit  = current - spent;
+    const pct     = spent > 0 ? profit / spent * 100 : 0;
+    tSpent  += spent;
+    tReturn += current;
+    tWeight += lot.weight;
+
+    const cls  = profit >= 0 ? 'pos' : 'neg';
+    const sign = profit >= 0 ? '+' : '';
+    const heldDays = lot.purchaseDate
+      ? Math.floor((Date.now() - new Date(lot.purchaseDate)) / 86400000)
+      : null;
+    const heldStr = heldDays !== null
+      ? (heldDays >= 365 ? (heldDays / 365).toFixed(1) + 'y' : heldDays + 'd')
+      : '—';
+    const buyDateStr = lot.purchaseDate
+      ? new Date(lot.purchaseDate).toLocaleDateString('en-SA', { day:'numeric', month:'short', year:'numeric' })
+      : 'Date unknown';
+    const el = document.createElement('div');
+    el.className = 'lot-item';
+    el.innerHTML = `
+      <div class="lot-hdr">
+        <div>
+          <div class="lot-name">${lot.name}</div>
+          <div class="lot-meta">${lot.weight}g · ${buyDateStr} @ ${fmt(lot.buyPrice)} SAR/g</div>
+        </div>
+        <div class="lot-btns">
+          <button class="btn-sm"     onclick="openEditLot('${lot.id}')">Edit</button>
+          <button class="btn-sm del" onclick="deleteLot('${lot.id}')">Del</button>
+        </div>
+      </div>
+      <div class="lot-nums">
+        <div class="ln"><div class="ln-lbl">Spent</div><div class="ln-val">${fmt(spent)}</div></div>
+        <div class="ln"><div class="ln-lbl">Value</div><div class="ln-val">${price24k > 0 ? fmt(current) : '—'}</div></div>
+        <div class="ln"><div class="ln-lbl">P&L</div><div class="ln-val ${cls}">${price24k > 0 ? sign + pct.toFixed(1) + '%' : '—'}</div></div>
+        <div class="ln"><div class="ln-lbl">Held</div><div class="ln-val">${heldStr}</div></div>
+      </div>
+    `;
+    list.appendChild(el);
+  });
+
+  // Summary
+  const tp  = tReturn - tSpent;
+  const tpc = tSpent > 0 ? tp / tSpent * 100 : 0;
+  const ps  = tp >= 0 ? '+' : '';
+  document.getElementById('sumSpent').textContent    = fmt(tSpent) + ' SAR';
+  document.getElementById('sumSpentSub').textContent = tWeight + 'g across ' + lots.length + ' lot' + (lots.length !== 1 ? 's' : '');
+  if (price24k > 0) {
+    document.getElementById('sumReturn').textContent    = fmt(tReturn) + ' SAR';
+    document.getElementById('sumReturnSub').textContent = ps + fmt(tp) + ' SAR (' + ps + tpc.toFixed(1) + '%)';
+  } else {
+    document.getElementById('sumReturn').textContent    = '—';
+    document.getElementById('sumReturnSub').textContent = 'Waiting for price…';
+  }
+  renderZakat(tReturn);
+}
+
+// ── ZAKAT ──
+function renderZakat(totalValue) {
+  const due = totalValue * 0.025;
+  document.getElementById('zakatTotal').textContent = totalValue > 0 ? fmt(totalValue) : '—';
+  document.getElementById('zakatDue').textContent   = due > 0       ? fmt(due)         : '—';
+  updateZakatCountdown();
+}
+
+function updateZakatCountdown() {
+  const dueDate = new Date('2026-12-28T00:00:00');
+  const today   = new Date();
+  today.setHours(0, 0, 0, 0);
+  dueDate.setHours(0, 0, 0, 0);
+  const diffDays = Math.round((dueDate - today) / (1000 * 60 * 60 * 24));
+
+  const numEl  = document.getElementById('zakatDaysNum');
+  const lblEl  = document.getElementById('zakatCountdownLbl');
+  const boxEl  = document.getElementById('zakatCountdown');
+
+  boxEl.classList.remove('green', 'amber', 'red');
+  if (diffDays > 90) {
+    boxEl.classList.add('green');
+    numEl.textContent = diffDays;
+    lblEl.textContent = 'days until Zakat due';
+  } else if (diffDays > 0) {
+    boxEl.classList.add('amber');
+    numEl.textContent = diffDays;
+    lblEl.textContent = 'days until Zakat due';
+  } else if (diffDays === 0) {
+    boxEl.classList.add('red');
+    numEl.textContent = 'Today';
+    lblEl.textContent = 'Zakat is due today';
+  } else {
+    boxEl.classList.add('red');
+    numEl.textContent = Math.abs(diffDays);
+    lblEl.textContent = 'days overdue — pay now';
+  }
+}
+
+// ── LOT CRUD ──
+function openAddLot() {
+  editId = null;
+  document.getElementById('lotModalTitle').textContent = 'Add Lot';
+  document.getElementById('lotName').value         = '';
+  document.getElementById('lotWeight').value       = '';
+  document.getElementById('lotBuyPrice').value     = '';
+  document.getElementById('lotPurchaseDate').value = new Date().toISOString().slice(0, 10);
+  document.getElementById('lotModal').classList.remove('hidden');
+}
+function openEditLot(id) {
+  const lot = lots.find(l => l.id === id); if (!lot) return;
+  editId = id;
+  document.getElementById('lotModalTitle').textContent = 'Edit Lot';
+  document.getElementById('lotName').value         = lot.name;
+  document.getElementById('lotWeight').value       = lot.weight;
+  document.getElementById('lotBuyPrice').value     = lot.buyPrice;
+  document.getElementById('lotPurchaseDate').value = lot.purchaseDate || '';
+  document.getElementById('lotModal').classList.remove('hidden');
+}
+function closeLotModal() { document.getElementById('lotModal').classList.add('hidden'); }
+async function saveLot() {
+  const name         = document.getElementById('lotName').value.trim();
+  const w            = parseFloat(document.getElementById('lotWeight').value);
+  const bp           = parseFloat(document.getElementById('lotBuyPrice').value);
+  const purchaseDate = document.getElementById('lotPurchaseDate').value || null;
+  if (!name || isNaN(w) || isNaN(bp) || w <= 0 || bp <= 0) { showToast('Fill all fields correctly'); return; }
+  if (editId) { lots = lots.map(l => l.id === editId ? {...l, name, weight:w, buyPrice:bp, purchaseDate} : l); }
+  else        { lots.push({ id: uid(), name, weight: w, buyPrice: bp, purchaseDate }); }
+  closeLotModal(); renderLots();
+  await persistLots();
+}
+async function deleteLot(id) {
+  lots = lots.filter(l => l.id !== id);
+  renderLots(); showToast('Lot removed');
+  await persistLots();
+}
+
+// ── API KEY ──
+function getApiKey() { return localStorage.getItem('anthropic_api_key') || ''; }
+function openApiKeyModal() {
+  document.getElementById('apiKeyInput').value = getApiKey();
+  document.getElementById('apiKeyModal').classList.remove('hidden');
+}
+function closeApiKeyModal() { document.getElementById('apiKeyModal').classList.add('hidden'); }
+function saveApiKey() {
+  const k = document.getElementById('apiKeyInput').value.trim();
+  if (!k.startsWith('sk-')) { showToast('Invalid key format'); return; }
+  localStorage.setItem('anthropic_api_key', k);
+  closeApiKeyModal(); getAIAdvice();
+}
+
+// ── AI ADVICE ──
+async function getAIAdvice() {
+  const key = getApiKey();
+  if (!key) { openApiKeyModal(); return; }
+
+  const btn  = document.getElementById('aiBtn');
+  btn.classList.add('loading'); btn.disabled = true;
+
+  const lotsStr = lots.map(l => {
+    const spent   = l.weight * l.buyPrice;
+    const cur     = price24k > 0 ? l.weight * price24k : null;
+    const pnl     = cur !== null ? ((cur - spent) / spent * 100).toFixed(1) + '%' : 'N/A';
+    return `- ${l.name}: ${l.weight}g @ ${l.buyPrice} SAR/g | P&L: ${pnl}`;
+  }).join('\n');
+
+  const tSpent  = lots.reduce((s,l) => s + l.weight * l.buyPrice, 0);
+  const tReturn = price24k > 0 ? lots.reduce((s,l) => s + l.weight * price24k, 0) : null;
+  const oPnl    = tReturn ? ((tReturn - tSpent) / tSpent * 100).toFixed(1) + '%' : 'N/A';
+
+  // Build 7-day history string from localStorage
+  let histStr = '';
+  try {
+    const hist = JSON.parse(localStorage.getItem('gph') || '{}');
+    const sorted = Object.keys(hist).sort();
+    if (sorted.length > 1) {
+      histStr = '\nPRICE HISTORY (SAR/gram, 24K):\n' +
+        sorted.map(d => `- ${d}: ${Math.round(hist[d])} SAR`).join('\n');
+    }
+  } catch(_){}
+
+  const todayISO = new Date().toISOString().slice(0, 10);
+
+  const prompt = `You are a senior gold investment advisor. Be clear and actionable.
+
+CRITICAL: Today is ${todayISO}. This is your reference point for ALL advice.
+- NEVER suggest waiting for or referencing any date that is before ${todayISO} — those dates are in the past.
+- Do NOT mention years like 2024 or 2025 as future opportunities. They have already passed.
+- All time references must be AFTER ${todayISO}.
+
+MARKET: Gold 24K = ${price24k > 0 ? Math.round(price24k) + ' SAR/gram' : 'unavailable'} | Location: Riyadh, Saudi Arabia
+${histStr}
+
+PORTFOLIO:
+${lotsStr}
+
+Overall P&L: ${oPnl} | Total invested: ${fmt(tSpent)} SAR
+
+RULES:
+- The 100g lot is a permanent long-term hold. Never recommend selling it.
+- Base trend analysis on the price history above.
+- Consider current Fed rates, oil prices (Saudi economy), USD/SAR peg, and gold seasonality from today forward.
+
+Should I buy more, hold, or sell any lot? Be specific per lot. Max 250 words. Plain text only.`;
+
+  try {
+    const res = await fetch('/.netlify/functions/ai-advice', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': key,
+      },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 400,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      if (res.status === 401) {
+        localStorage.removeItem('anthropic_api_key');
+        showToast('Invalid API key — please re-enter');
+        openApiKeyModal(); return;
+      }
+      throw new Error(err.error?.message || 'API error ' + res.status);
+    }
+
+    const data   = await res.json();
+    const advice = data.content[0].text;
+    const card   = document.getElementById('adviceCard');
+    document.getElementById('adviceBody').textContent = advice;
+    document.getElementById('adviceTs').textContent   = 'Generated at ' + nowStr();
+    card.classList.add('show');
+    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } catch(e) {
+    showToast('AI error: ' + e.message);
+  } finally {
+    btn.classList.remove('loading'); btn.disabled = false;
+  }
+}
+
+// ── DISMISS MODALS ON OVERLAY CLICK ──
+document.getElementById('apiKeyModal').addEventListener('click', function(e){ if(e.target===this) closeApiKeyModal(); });
+document.getElementById('lotModal').addEventListener('click',    function(e){ if(e.target===this) closeLotModal(); });
+document.getElementById('pwModal').addEventListener('click',     function(e){ if(e.target===this) closePwModal(); });
+
+// ── INIT ──
+// initLots() fetches from cloud API, then renders — fetchGoldPrice() runs in parallel
+initLots();
+fetchGoldPrice();
+// Refresh countdown at midnight daily
+(function scheduleMidnightRefresh() {
+  const now  = new Date();
+  const next = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 5);
+  setTimeout(() => { updateZakatCountdown(); scheduleMidnightRefresh(); }, next - now);
+})();
+</script>
+</body>
+</html>
